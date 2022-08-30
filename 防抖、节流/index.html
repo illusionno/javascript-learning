@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    inpt1:<input type="text" class="ipt1"><button class="btn1">取消</button>
+    <hr>
+    inpt2: <input type="text" class="ipt2">
+
+    <!-- 标签引入，只有lodash.js和lodash.min.js才可以用 -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script> -->
+    <script src="./my_debounce.js"></script>
+    <script src="./my_throttle.js"></script>
+    <script>
+        let ipt1 = document.querySelector('.ipt1')
+        let ipt2 = document.querySelector('.ipt2')
+        let btn1 = document.querySelector('.btn1')
+        let count = 0
+        function search(event) {
+            console.log(`执行了${++count}次`,this,event);
+            return 'aaa'
+        }
+        // 防抖
+        // ipt1.oninput = _.debounce(search, 1500)
+        let my_debounceRes = my_debounce(search, 2000,false,(res) =>console.log('执行函数的结果',res))
+        ipt1.oninput = my_debounceRes
+        // 取消功能
+        btn1.onclick = function(){
+            my_debounceRes.cancel()
+        }
+        // 节流
+        ipt2.oninput = my_throttle(search,2000,{leading:false,trailing:true})
+    </script>
+</body>
+
+</html>
