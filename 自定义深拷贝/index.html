@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./cloneDeep.js"></script>
+    <script>
+        let s1 = Symbol("aaa")
+        let s2 = Symbol("bbb")
+        let oldObj = {
+            name: 'lili',
+            age: 18,
+            friends: {
+                name: 'herry',
+                age: 20,
+                eat: function () {
+                    return 'cake!!'
+                },
+                hobbies: ['a', 'b', 'c']
+            },
+            [s1]: "aaa1",
+            s2: s1,
+            set:new Set(['a','b','c']),
+            map:[['a','b'],['c','d']]
+        }
+        let newObj = cloneDeep(oldObj)
+        oldObj.friends.age = 22
+        console.log(newObj);
+    </script>
+</body>
+
+</html>

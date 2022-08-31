@@ -35,7 +35,7 @@
             my_debounceRes.cancel()
         }
         // 节流
-        ipt2.oninput = my_throttle(search,2000,{leading:false,trailing:true})
+        ipt2.oninput = my_throttle(search,2000,{leading:false,trailing:true,callback:(res) =>console.log('执行函数的结果',res)})
     </script>
 </body>
 
