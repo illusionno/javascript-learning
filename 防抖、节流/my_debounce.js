@@ -1,3 +1,4 @@
+// immediate表示第一次是否会触发
 function my_debounce(fn, delay, immediate = false, callback) {
     // 保存上一次的定时器对象
     let timer = null

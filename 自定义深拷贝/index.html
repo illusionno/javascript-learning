@@ -26,12 +26,17 @@
             },
             [s1]: "aaa1",
             s2: s1,
-            set:new Set(['a','b','c']),
-            map:[['a','b'],['c','d']]
+            set: new Set(['a', 'b', 'c']),
+            map: [['a', 'b'], ['c', 'd']],
         }
+        oldObj.info = oldObj
+        console.log(oldObj);
         let newObj = cloneDeep(oldObj)
         oldObj.friends.age = 22
         console.log(newObj);
+        // 函数的原型
+        function a() { }
+        console.log(a.prototype);
     </script>
 </body>
 

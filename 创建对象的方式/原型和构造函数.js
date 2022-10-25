@@ -3,7 +3,7 @@ function Person(name, age, sex) {
     this.age = age
     this.sex = sex
 }
-// 原型对象中提供公共方法
+// 原型对象中提供公共方法,注意这里不能放在创建对象后！！
 Person.prototype = {
     info: function () {
         //函数this和定义位置无关，指向函数的调用者

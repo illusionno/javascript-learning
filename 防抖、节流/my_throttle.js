@@ -7,6 +7,7 @@ let my_throttle = function (fn, interval, options = { leading: true, trailing: f
     let _throttle = function (...args) {
         // 获取事件触发时的时间
         let nowTime = new Date().getTime()
+        // leading
         if (lastTime === 0 && leading === false) lastTime = nowTime
         let remainTime = interval - (nowTime - lastTime)
         if (remainTime <= 0) {
@@ -21,6 +22,7 @@ let my_throttle = function (fn, interval, options = { leading: true, trailing: f
             // 结束方法
             return
         }
+        // trailing
         if (trailing && !timer) {
             timer = setTimeout(() => {
                 timer = null
