@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="form" id="loginform">
+        <h1> Login </h1>
+        <form novalidate>
+            <p class="email">
+                <label for="email">Email login <span>*</span>
+                </label>
+                <input class="input" required type="email" id="email" name="email" pattern="@" />
+                <span class="validation error"> Please enter a valid email</span>
+                <span class="validation req"> This field is required</span>
+            </p>
+            <p class="password">
+                <label for="password">Password <span>*</span></label>
+                <input class="input" required type="password" id="password" name="password" />
+                <span class="validation req"> This field is required</span>
+            </p>
+            <p class="remember">
+                <input class="checkbox" type="checkbox" id="remember" />
+                <label for="remember"> Remember me</label>
+
+            </p>
+            <p class="login">
+                <input type="submit" value="Login" />
+            </p>
+        </form>
+    </div>
+    <script>
+        /* JavaScript with the precious help of Jean Pierre Vincent @theystolemynick https://twitter.com/theystolemynick  */
+
+        function validateThisField(field) {
+            if (field.required && field.value === '') {
+                field.classList.add('required');
+                formIsValid = false;
+            }
+            if (field.pattern
+                && !(new RegExp(field.pattern).exec(field.value) !== null)) {
+                field.classList.add('invalid');
+                formIsValid = false;
+            }
+
+        }
+
+        var form = document.getElementById('loginform');
+        var fields = form.querySelectorAll('input');
+        var formIsValid = true;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            Array.prototype.forEach.call(fields, validateThisField);
+            // also have a global state on the form
+            if (!formIsValid) {
+                form.classList.remove('errors');
+                setTimeout(function () { form.classList.add('errors'); }, 0);
+            }
+        });
+        /*
+         form.addEventListener('focus', function (e) {
+            e.target.classList.remove('required');
+            e.target.classList.remove('invalid');
+        }, true); */
+
+        form.addEventListener('blur', function (e) {
+            e.target.classList.remove('required');
+            e.target.classList.remove('invalid');
+            validateThisField(e.target);
+        }, true);
+    </script>
+</body>
+
+</html>
